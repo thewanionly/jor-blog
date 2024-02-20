@@ -2,6 +2,7 @@ import React from 'react';
 
 import { loadBlogPost } from '@/helpers/file-helpers';
 
+import { BLOG_TITLE } from '@/constants';
 import BlogHero from '@/components/BlogHero';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
@@ -12,7 +13,7 @@ export async function generateMetadata({ params: { postSlug } }) {
   const { title, abstract } = frontmatter;
 
   return {
-    title,
+    title: `${title} · ${BLOG_TITLE}`,
     description: abstract
   };
 }
