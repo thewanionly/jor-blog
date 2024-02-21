@@ -1,5 +1,4 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
 
 import { loadBlogPost } from '@/helpers/file-helpers';
 
@@ -10,7 +9,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import CodeSnippet from '@/components/CodeSnippet';
 import styles from './postSlug.module.css';
 
-const DivisionGroupsDemo = dynamic(() => import('@/components/DivisionGroupsDemo'));
+import DivisionGroupsDemo from '@/components/DivisionGroupsDemo';
 
 export async function generateMetadata({ params: { postSlug } }) {
   const { frontmatter } = await loadBlogPost(postSlug);
