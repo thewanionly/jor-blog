@@ -11,6 +11,7 @@ import Equation from './Equation';
 import styles from './DivisionGroupsDemo.module.css';
 
 function DivisionGroupsDemo({ numOfItems = 12, initialNumOfGroups = 1, includeRemainderArea }) {
+  const id = React.useId();
   const [numOfGroups, setNumOfGroups] = React.useState(initialNumOfGroups);
 
   const numOfItemsPerGroup = Math.floor(numOfItems / numOfGroups);
@@ -49,15 +50,15 @@ function DivisionGroupsDemo({ numOfItems = 12, initialNumOfGroups = 1, includeRe
             <div key={groupIndex} className={styles.group}>
               {range(groupIndex * numOfItemsPerGroup, (groupIndex + 1) * numOfItemsPerGroup).map(
                 (index) => {
+                  const layoutId = `${id}-${index}`;
+
                   return (
                     <motion.div
-                      layoutId={`circle-${index}`}
+                      key={layoutId}
+                      layoutId={layoutId}
                       transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-                      key={`circle-${index}`}
                       className={styles.item}
-                    >
-                      {index}
-                    </motion.div>
+                    />
                   );
                 }
               )}
