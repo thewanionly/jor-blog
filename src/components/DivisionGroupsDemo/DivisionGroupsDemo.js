@@ -1,19 +1,15 @@
-"use client";
-import React from "react";
-import clsx from "clsx";
+'use client';
+import React from 'react';
+import clsx from 'clsx';
 
-import { range } from "@/utils";
-import Card from "@/components/Card";
-import SliderControl from "@/components/SliderControl";
+import { range } from '@/utils';
+import Card from '@/components/Card';
+import SliderControl from '@/components/SliderControl';
 
-import Equation from "./Equation";
-import styles from "./DivisionGroupsDemo.module.css";
+import Equation from './Equation';
+import styles from './DivisionGroupsDemo.module.css';
 
-function DivisionGroupsDemo({
-  numOfItems = 12,
-  initialNumOfGroups = 1,
-  includeRemainderArea,
-}) {
+function DivisionGroupsDemo({ numOfItems = 12, initialNumOfGroups = 1, includeRemainderArea }) {
   const [numOfGroups, setNumOfGroups] = React.useState(initialNumOfGroups);
 
   const numOfItemsPerGroup = Math.floor(numOfItems / numOfGroups);
@@ -25,18 +21,18 @@ function DivisionGroupsDemo({
   const gridStructure =
     numOfGroups < 4
       ? {
-          gridTemplateColumns: `repeat(${numOfGroups}, 1fr)`,
+          gridTemplateColumns: `repeat(${numOfGroups}, 1fr)`
         }
       : {
-          gridTemplateColumns: "1fr 1fr",
-          gridTemplateRows: "1fr 1fr",
+          gridTemplateColumns: '1fr 1fr',
+          gridTemplateRows: '1fr 1fr'
         };
 
   return (
-    <Card as="section" className={styles.wrapper}>
+    <Card as='section' className={styles.wrapper}>
       <header className={styles.header}>
         <SliderControl
-          label="Number of Groups"
+          label='Number of Groups'
           className={styles.slider}
           step={1}
           min={1}
@@ -68,11 +64,7 @@ function DivisionGroupsDemo({
         </div>
       )}
 
-      <Equation
-        dividend={numOfItems}
-        divisor={numOfGroups}
-        remainder={remainder}
-      />
+      <Equation dividend={numOfItems} divisor={numOfGroups} remainder={remainder} />
     </Card>
   );
 }
