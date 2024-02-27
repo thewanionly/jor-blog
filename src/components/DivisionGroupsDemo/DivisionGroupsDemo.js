@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { range } from '@/utils';
 import Card from '@/components/Card';
 import SliderControl from '@/components/SliderControl';
+import { motion } from 'framer-motion';
 
 import Equation from './Equation';
 import styles from './DivisionGroupsDemo.module.css';
@@ -46,9 +47,20 @@ function DivisionGroupsDemo({ numOfItems = 12, initialNumOfGroups = 1, includeRe
         <div className={clsx(styles.demoArea)} style={gridStructure}>
           {range(numOfGroups).map((groupIndex) => (
             <div key={groupIndex} className={styles.group}>
-              {range(numOfItemsPerGroup).map((index) => {
-                return <div key={index} className={styles.item} />;
-              })}
+              {range(groupIndex * numOfItemsPerGroup, (groupIndex + 1) * numOfItemsPerGroup).map(
+                (index) => {
+                  return (
+                    <motion.div
+                      layoutId={`circle-${index}`}
+                      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                      key={`circle-${index}`}
+                      className={styles.item}
+                    >
+                      {index}
+                    </motion.div>
+                  );
+                }
+              )}
             </div>
           ))}
         </div>
