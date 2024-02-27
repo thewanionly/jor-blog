@@ -10,6 +10,8 @@ import { LayoutGroup, motion } from 'framer-motion';
 import Equation from './Equation';
 import styles from './DivisionGroupsDemo.module.css';
 
+const CIRCLE_TRANSITION = { type: 'spring', stiffness: 100, damping: 20 };
+
 function DivisionGroupsDemo({ numOfItems = 12, initialNumOfGroups = 1, includeRemainderArea }) {
   const id = React.useId();
   const [numOfGroups, setNumOfGroups] = React.useState(initialNumOfGroups);
@@ -57,7 +59,7 @@ function DivisionGroupsDemo({ numOfItems = 12, initialNumOfGroups = 1, includeRe
                       <motion.div
                         key={layoutId}
                         layoutId={layoutId}
-                        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                        transition={CIRCLE_TRANSITION}
                         className={styles.item}
                       />
                     );
@@ -72,9 +74,21 @@ function DivisionGroupsDemo({ numOfItems = 12, initialNumOfGroups = 1, includeRe
           <div className={styles.remainderArea}>
             <p className={styles.remainderHeading}>Remainder Area</p>
 
-            {range(remainder).map((index) => {
-              return <div key={index} className={styles.item} />;
-            })}
+            {range(remainder)
+              .reverse()
+              .map((index) => {
+                const num = numOfGroups * numOfItemsPerGroup + index;
+                const layoutId = `${id}-${num}`;
+
+                return (
+                  <motion.div
+                    key={layoutId}
+                    layoutId={layoutId}
+                    transition={CIRCLE_TRANSITION}
+                    className={styles.item}
+                  />
+                );
+              })}
           </div>
         )}
 
