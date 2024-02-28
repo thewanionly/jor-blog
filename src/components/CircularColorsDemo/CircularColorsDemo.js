@@ -40,6 +40,13 @@ function CircularColorsDemo() {
     clearInterval(timerId.current);
   };
 
+  const handleReset = () => {
+    setIsPlaying(false);
+
+    clearInterval(timerId.current);
+    setTimeElapsed(0);
+  };
+
   return (
     <Card as='section' className={styles.wrapper}>
       <ul className={styles.colorsWrapper}>
@@ -72,7 +79,7 @@ function CircularColorsDemo() {
             {isPlaying ? <Pause /> : <Play />}
             <VisuallyHidden>{isPlaying ? 'Pause' : 'Play'}</VisuallyHidden>
           </button>
-          <button>
+          <button onClick={handleReset}>
             <RotateCcw />
             <VisuallyHidden>Reset</VisuallyHidden>
           </button>
