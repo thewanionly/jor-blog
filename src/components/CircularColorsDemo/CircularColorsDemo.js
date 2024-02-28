@@ -13,6 +13,8 @@ const COLORS = [
   { label: 'blue', value: 'hsl(235deg 100% 65%)' }
 ];
 
+const ONE_SECOND_IN_MS = 1000;
+
 function CircularColorsDemo() {
   const [timeElapsed, setTimeElapsed] = React.useState(0);
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -29,7 +31,7 @@ function CircularColorsDemo() {
 
     const intervalId = setInterval(() => {
       setTimeElapsed((currentTimeElapsed) => currentTimeElapsed + 1);
-    }, 1000);
+    }, ONE_SECOND_IN_MS);
 
     timerId.current = intervalId;
   };
