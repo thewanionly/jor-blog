@@ -14,12 +14,31 @@ const COLORS = [
 ];
 
 function CircularColorsDemo() {
-  // TODO: This value should increase by 1 every second:
-  const timeElapsed = 0;
+  const [timeElapsed, setTimeElapsed] = React.useState(0);
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const timerId = React.useRef();
 
   // TODO: This value should cycle through the colors in the
   // COLORS array:
   const selectedColor = COLORS[0];
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+
+    setTimeElapsed((currentTimeElapsed) => currentTimeElapsed + 1);
+
+    const intervalId = setInterval(() => {
+      setTimeElapsed((currentTimeElapsed) => currentTimeElapsed + 1);
+    }, 1000);
+
+    timerId.current = intervalId;
+  };
+
+  const handlePause = () => {
+    setIsPlaying(false);
+
+    clearInterval(timerId.current);
+  };
 
   return (
     <Card as='section' className={styles.wrapper}>
@@ -49,9 +68,9 @@ function CircularColorsDemo() {
           <dd>{timeElapsed}</dd>
         </dl>
         <div className={styles.actions}>
-          <button>
-            <Play />
-            <VisuallyHidden>Play</VisuallyHidden>
+          <button onClick={isPlaying ? handlePause : handlePlay}>
+            {isPlaying ? <Pause /> : <Play />}
+            <VisuallyHidden>{isPlaying ? 'Pause' : 'Play'}</VisuallyHidden>
           </button>
           <button>
             <RotateCcw />
