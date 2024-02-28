@@ -26,6 +26,14 @@ function CircularColorsDemo() {
 
   const selectedColor = COLORS[timeElapsed % COLORS.length];
 
+  React.useEffect(() => {
+    return () => {
+      if (timerId.current) {
+        clearInterval(timerId.current);
+      }
+    };
+  }, []);
+
   const handlePlay = React.useCallback(() => {
     setIsPlaying(true);
     setTimeElapsed((currentTimeElapsed) => currentTimeElapsed + 1);
