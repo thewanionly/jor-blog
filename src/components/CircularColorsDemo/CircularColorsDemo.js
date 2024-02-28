@@ -24,9 +24,8 @@ function CircularColorsDemo() {
   // COLORS array:
   const selectedColor = COLORS[0];
 
-  const handlePlay = () => {
+  const handlePlay = React.useCallback(() => {
     setIsPlaying(true);
-
     setTimeElapsed((currentTimeElapsed) => currentTimeElapsed + 1);
 
     const intervalId = setInterval(() => {
@@ -34,20 +33,20 @@ function CircularColorsDemo() {
     }, ONE_SECOND_IN_MS);
 
     timerId.current = intervalId;
-  };
+  }, []);
 
-  const handlePause = () => {
+  const handlePause = React.useCallback(() => {
     setIsPlaying(false);
 
     clearInterval(timerId.current);
-  };
+  }, []);
 
-  const handleReset = () => {
+  const handleReset = React.useCallback(() => {
     setIsPlaying(false);
-
-    clearInterval(timerId.current);
     setTimeElapsed(0);
-  };
+
+    clearInterval(timerId.current);
+  }, []);
 
   return (
     <Card as='section' className={styles.wrapper}>
