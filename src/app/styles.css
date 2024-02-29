@@ -42,18 +42,16 @@ h6 {
 }
 
 /* THEME VARIABLES */
-html {
+body {
   --content-width: 55rem;
   --outer-content-width: 80rem;
   --viewport-padding: 16px;
   --header-height: 5rem;
-  --trimmed-content-width: calc(
-    var(--content-width) - var(--viewport-padding) * 2
-  );
+  --trimmed-content-width: calc(var(--content-width) - var(--viewport-padding) * 2);
 }
 
 @media (min-width: 35rem) {
-  html {
+  body {
     --viewport-padding: 24px;
   }
 }
@@ -71,14 +69,11 @@ html {
   text-shadow: none !important;
 }
 
-html {
+body {
   color: var(--color-text);
   font-family: var(--font-family), sans-serif;
   letter-spacing: -0.03125em;
   background: var(--color-backdrop-highlight);
-}
-
-body {
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
@@ -88,18 +83,14 @@ body {
 }
 
 body::before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 0;
   top: 0;
   left: 0;
   right: 0;
   height: 50vh;
-  background: linear-gradient(
-    to top,
-    var(--color-backdrop),
-    var(--color-backdrop-highlight)
-  );
+  background: linear-gradient(to top, var(--color-backdrop), var(--color-backdrop-highlight));
 }
 
 body > main {
