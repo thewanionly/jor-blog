@@ -13,9 +13,9 @@ const Body = ({ children }) => {
   );
 };
 
-export const ThemedBody = ({ children }) => {
+export const ThemedBody = ({ initialTheme, children }) => {
   return (
-    <ThemeProvider initialTheme='dark'>
+    <ThemeProvider initialTheme={initialTheme}>
       <Body>{children}</Body>
     </ThemeProvider>
   );

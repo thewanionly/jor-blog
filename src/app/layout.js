@@ -1,5 +1,6 @@
 import React from 'react';
 import { Work_Sans, Spline_Sans_Mono } from 'next/font/google';
+import { cookies } from 'next/headers';
 import clsx from 'clsx';
 
 import { BLOG_TITLE } from '@/constants';
@@ -29,10 +30,13 @@ export const metadata = {
 };
 
 function RootLayout({ children }) {
+  const savedTheme = cookies().get('color-theme');
+  const initialTheme = savedTheme?.value;
+
   return (
     <ReducedMotion>
       <html lang='en' className={clsx(mainFont.variable, monoFont.variable)}>
-        <ThemedBody>
+        <ThemedBody initialTheme={initialTheme}>
           <Header />
           <main>{children}</main>
           <Footer />
