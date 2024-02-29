@@ -3,7 +3,7 @@ import { Work_Sans, Spline_Sans_Mono } from 'next/font/google';
 import { cookies } from 'next/headers';
 import clsx from 'clsx';
 
-import { BLOG_TITLE } from '@/constants';
+import { BLOG_TITLE, COLOR_THEME_COOKIE_NAME } from '@/constants';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ReducedMotion from '@/components/ReducedMotion';
@@ -30,7 +30,7 @@ export const metadata = {
 };
 
 function RootLayout({ children }) {
-  const savedTheme = cookies().get('color-theme');
+  const savedTheme = cookies().get(COLOR_THEME_COOKIE_NAME);
   const initialTheme = savedTheme?.value;
 
   return (

@@ -3,6 +3,8 @@
 import React from 'react';
 import Cookie from 'js-cookie';
 
+import { COLOR_THEME_COOKIE_NAME } from '@/constants';
+
 const ThemeContext = React.createContext();
 
 function ThemeProvider({ initialTheme = 'dark', children }) {
@@ -13,7 +15,7 @@ function ThemeProvider({ initialTheme = 'dark', children }) {
 
     setTheme(nextTheme);
 
-    Cookie.set('color-theme', nextTheme, {
+    Cookie.set(COLOR_THEME_COOKIE_NAME, nextTheme, {
       expires: 1000
     });
   };
