@@ -1,6 +1,7 @@
+import RSS from 'rss';
+
 import { BLOG_TITLE, BLOG_DESCRIPTION } from '@/constants';
 import { getBlogPostList } from '@/helpers/file-helpers';
-import RSS from 'rss';
 
 export const dynamic = 'force-dynamic';
 
