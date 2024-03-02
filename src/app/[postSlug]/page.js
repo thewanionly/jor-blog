@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { notFound } from 'next/navigation';
+
 import { loadBlogPost } from '@/helpers/file-helpers';
 
 import { BLOG_TITLE } from '@/constants';
@@ -11,7 +13,15 @@ import styles from './postSlug.module.css';
 import { COMPONENT_MAP } from '@/helpers/mdx-components';
 
 export async function generateMetadata({ params: { postSlug } }) {
-  const { frontmatter } = await loadBlogPost(postSlug);
+  const blogPost = await loadBlogPost(postSlug);
+
+  if (!blogPost) {
+    return {
+      title: `404 Not found · ${BLOG_TITLE}`
+    };
+  }
+
+  const { frontmatter } = blogPost;
   const { title, abstract } = frontmatter;
 
   return {
@@ -21,9 +31,15 @@ export async function generateMetadata({ params: { postSlug } }) {
 }
 
 async function BlogPost({ params: { postSlug } }) {
-  const { frontmatter, content } = await loadBlogPost(postSlug);
+  const blogPost = await loadBlogPost(postSlug);
 
+  if (!blogPost) {
+    notFound();
+  }
+
+  const { frontmatter, content } = blogPost;
   const { title, publishedOn } = frontmatter;
+
   return (
     <article className={styles.wrapper}>
       <BlogHero title={title} publishedOn={publishedOn} />
